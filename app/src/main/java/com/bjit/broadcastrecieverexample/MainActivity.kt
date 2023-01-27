@@ -8,8 +8,10 @@ import android.content.IntentFilter
 import android.content.pm.PackageManager
 import android.support.v4.app.ActivityCompat
 import android.support.v4.content.ContextCompat
+import android.widget.TextView
 import com.bjit.broadcastrecieverexample.services.AirplaneModeChangeReceiver
 import com.bjit.broadcastrecieverexample.services.NetworkCheckService
+import com.bjit.broadcastrecieverexample.services.ServiceSMS
 
 class MainActivity : AppCompatActivity() {
     private lateinit var receiver: AirplaneModeChangeReceiver
@@ -17,6 +19,7 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+        requestSmsPermission()
         receiver = AirplaneModeChangeReceiver()
         internetPermission = NetworkCheckService()
 
@@ -27,8 +30,8 @@ class MainActivity : AppCompatActivity() {
         IntentFilter("android.net.conn.CONNECTIVITY_CHANGE").also {
             registerReceiver(internetPermission, it)
         }
-
-        requestSmsPermission()
+        val smsBody = findViewById<TextView>(R.id.smsText)
+        smsBody.text = intent.getStringExtra("sms")
     }
 
     private fun requestSmsPermission() {
