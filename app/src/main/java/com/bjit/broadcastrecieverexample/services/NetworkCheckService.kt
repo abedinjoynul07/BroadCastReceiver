@@ -9,7 +9,8 @@ import android.widget.Toast
 
 class NetworkCheckService : BroadcastReceiver() {
     override fun onReceive(context: Context, p1: Intent?) {
-        val connectivityManager = context.getSystemService(Context.CONNECTIVITY_SERVICE) as ConnectivityManager
+        val connectivityManager =
+            context.getSystemService(Context.CONNECTIVITY_SERVICE) as ConnectivityManager
         val activeNetwork = connectivityManager.activeNetworkInfo
         val isConnected = activeNetwork?.isConnected == true
         if (!isConnected) {
@@ -18,10 +19,12 @@ class NetworkCheckService : BroadcastReceiver() {
             isOnline(context)
         }
     }
+
     private fun isOnline(context: Context): Boolean {
         val connectivityManager =
             context.getSystemService(Context.CONNECTIVITY_SERVICE) as ConnectivityManager
-        val capabilities = connectivityManager.getNetworkCapabilities(connectivityManager.activeNetwork)
+        val capabilities =
+            connectivityManager.getNetworkCapabilities(connectivityManager.activeNetwork)
         if (capabilities != null) {
             if (capabilities.hasTransport(NetworkCapabilities.TRANSPORT_CELLULAR)) {
                 Toast.makeText(context, "ON CELLULAR NETWORK", Toast.LENGTH_SHORT).show()

@@ -1,3 +1,6 @@
 <resources>
     <string name="app_name">BroadcastRecieverExample</string>
+    <string name="enter_any_thing">Enter Any thing</string>
+    <string name="save">Save</string>
+    <string name="load">Load</string>
 </resources>
