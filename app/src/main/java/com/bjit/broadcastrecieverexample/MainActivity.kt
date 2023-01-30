@@ -6,24 +6,25 @@ import android.content.IntentFilter
 import android.content.SharedPreferences
 import android.content.pm.PackageManager
 import android.os.Bundle
-import android.support.v4.app.ActivityCompat
-import android.support.v4.content.ContextCompat
-import android.support.v7.app.AppCompatActivity
-import android.widget.EditText
-import android.widget.TextView
+import androidx.appcompat.app.AppCompatActivity
+import androidx.core.app.ActivityCompat
+import androidx.core.content.ContextCompat
 import com.bjit.broadcastrecieverexample.databinding.ActivityMainBinding
 import com.bjit.broadcastrecieverexample.services.AirplaneModeChangeReceiver
 import com.bjit.broadcastrecieverexample.services.NetworkCheckService
+import com.bjit.broadcastrecieverexample.services.PhoneNumberReadService
+import com.bjit.broadcastrecieverexample.utils.Constants.Companion.preferenceId
 
 class MainActivity : AppCompatActivity() {
     private val readPhoneStatePermissionCode = 1
     private val readCallLogPermissionCode = 2
-    private val preferenceName = "name"
-    private val preferenceId = "localSharedPref"
     private val internetPermissionPackage = "android.net.conn.CONNECTIVITY_CHANGE"
+    private val phonePermission = "android.intent.action.PHONE_STATE"
     private lateinit var receiver: AirplaneModeChangeReceiver
     private lateinit var internetPermission: NetworkCheckService
+    private lateinit var phoneCallRead: PhoneNumberReadService
     private lateinit var binding: ActivityMainBinding
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityMainBinding.inflate(layoutInflater)
@@ -33,6 +34,8 @@ class MainActivity : AppCompatActivity() {
         requestPermission()
         receiver = AirplaneModeChangeReceiver()
         internetPermission = NetworkCheckService()
+        phoneCallRead = PhoneNumberReadService()
+
 
         IntentFilter(Intent.ACTION_AIRPLANE_MODE_CHANGED).also {
             registerReceiver(receiver, it)
@@ -40,22 +43,11 @@ class MainActivity : AppCompatActivity() {
         IntentFilter(internetPermissionPackage).also {
             registerReceiver(internetPermission, it)
         }
-        val smsBody = findViewById<TextView>(R.id.name)
-        smsBody.text = intent.getStringExtra("sms")
 
-        binding.apply {
-            saveButton.setOnClickListener {
-                val name = findViewById<EditText>(R.id.editTextTextPersonName)
-                myEdit.putString(preferenceName, name.text.toString())
-                myEdit.apply()
-                name.text.clear()
-            }
-
-            loadButton.setOnClickListener {
-                val storedName = sharedPreferences.getString(preferenceName, "Name")
-                name.text = storedName
-            }
+        IntentFilter(phonePermission).also {
+            registerReceiver(phoneCallRead, it)
         }
+
     }
 
     private fun requestPermission() {
@@ -76,7 +68,7 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
-    private fun getPermission(permission: String, permissionCode: Int){
+    private fun getPermission(permission: String, permissionCode: Int) {
         ActivityCompat.requestPermissions(
             this, arrayOf(permission), permissionCode
         )
@@ -86,5 +78,6 @@ class MainActivity : AppCompatActivity() {
         super.onStop()
         unregisterReceiver(receiver)
         unregisterReceiver(internetPermission)
+        unregisterReceiver(phoneCallRead)
     }
 }

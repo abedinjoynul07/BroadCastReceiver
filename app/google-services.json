@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "303968112417",
+    "project_id": "sharedprefence-96c89",
+    "storage_bucket": "sharedprefence-96c89.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:303968112417:android:33877967541fbc6d393860",
+        "android_client_info": {
+          "package_name": "com.bjit.broadcastrecieverexample"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "303968112417-12m96ucma5voenkqsd5427ldjl1v44mi.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyD-gti4cAbICjW22-l-Un9iSGAzNn0iuH0"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "303968112417-12m96ucma5voenkqsd5427ldjl1v44mi.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

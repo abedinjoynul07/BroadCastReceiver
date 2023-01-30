@@ -3,4 +3,23 @@
     <string name="enter_any_thing">Enter Any thing</string>
     <string name="save">Save</string>
     <string name="load">Load</string>
+    <!-- Strings related to login -->
+    <string name="prompt_email">Email</string>
+    <string name="prompt_password">Password</string>
+    <string name="action_sign_in">Sign in or register</string>
+    <string name="action_sign_in_short">Sign in</string>
+    <string name="welcome">"Welcome!"</string>
+    <string name="invalid_username">Not a valid username</string>
+    <string name="invalid_password">Password must be >5 characters</string>
+    <string name="login_failed">"Login failed"</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="signin_with_goolge">Signin With Goolge</string>
+    <string name="signin_with_github">Signin With Github</string>
+    <string name="todo">TODO</string>
+    <string name="button">SignIn</string>
+
+    <string name="googleClientId">303968112417-if6kdost3jrgsubn4kpni8o7hbefsiqi.apps.googleusercontent.com</string>
+    <string name="switch_color_mood">Switch Color Mood</string>
+    <string name="logout">LogOut</string>
 </resources>

@@ -4,9 +4,9 @@ import android.content.BroadcastReceiver
 import android.content.Context
 import android.content.Intent
 import android.os.Build
-import android.support.annotation.RequiresApi
 import android.telephony.TelephonyManager
 import android.widget.Toast
+import androidx.annotation.RequiresApi
 
 class PhoneNumberReadService : BroadcastReceiver() {
     @RequiresApi(Build.VERSION_CODES.Q)
